@@ -1,9 +1,12 @@
 package com.simplilearn.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,6 +21,19 @@ public class Movie {
 	
 	@Column(name = "movie_genre")
 	private String genre;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="director_id")
+	private Director director;
+
+	
+	public Director getDirector() {
+		return director;
+	}
+
+	public void setDirector(Director director) {
+		this.director = director;
+	}
 
 	public int getId() {
 		return id;
